@@ -25,8 +25,10 @@ jobs:
 
       - name: Fix MSVC-specific syntax for MinGW
         run: |
-          find include/ -name "*.h" -exec sed -i 's/UnityEngine::Vector2/Vector2/g' {} +
-          find include/ -name "*.h" -exec sed -i 's/UnityEngine::Vector3/Vector3/g' {} +
+          sed -i 's/UnityEngine::Vector2/Vector2/g' include/global/unitysdk/UnityEngine/Vector2.h
+          sed -i 's/UnityEngine::Vector3/Vector3/g' include/global/unitysdk/UnityEngine/Vector3.h
+          sed -i 's/::Vector3/Vector3/g' include/global/unitysdk/UnityEngine/Vector3.h
+          sed -i 's/::Vector2/Vector2/g' include/global/unitysdk/UnityEngine/Vector2.h
 
       - name: Configure CMake
         run: cmake -S . -B build-linux -DCMAKE_TOOLCHAIN_FILE=mingw64.toolchain.cmake -DCMAKE_BUILD_TYPE=Debug
