@@ -6,7 +6,6 @@
 | Platform | Status |
 | :--- | :--- |
 | `Windows` | ![Windows Build](https://github.com/monakaibrahim-cmyk/hsr-cheese/actions/workflows/windows.yml/badge.svg?branch=development) |
-| `Linux` | ![Linux Build](https://github.com/monakaibrahim-cmyk/hsr-cheese/actions/workflows/linux.yml/badge.svg?branch=development) |
 
 ## ⚙️ Build Instructions
 * **CMake:** Version 3.20 or higher.
@@ -32,7 +31,7 @@
 	cmake --build build --config Debug
 	```
 
-The resulting library (`PipsiHSR.dll`) will be located in the `out/build/x64-Debug` directory.
+The resulting library (`PipsiHSR.dll`) will be located in the `build/Debug` directory.
 
 ## 💎 Credits
 [@Z4ee](https://github.com/Z4ee) - for the goon materials.

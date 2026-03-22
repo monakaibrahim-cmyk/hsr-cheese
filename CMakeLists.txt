@@ -44,33 +44,19 @@ target_compile_definitions(PipsiHSR PRIVATE
     _CONSOLE
 )
 
-if(MSVC)
-    target_compile_options(PipsiHSR PRIVATE /W3 /permissive-)
-    
-    if(EXISTS "${SRC_DIR}/pch.h")
-        target_precompile_headers(PipsiHSR PRIVATE "${SRC_DIR}/pch.h")
-    endif()
-else()
-    target_compile_options(PipsiHSR PRIVATE -Wall -Wextra -Wno-unused-parameter)
+target_compile_options(PipsiHSR PRIVATE /W3 /permissive-)
+
+if(EXISTS "${SRC_DIR}/pch.h")
+    target_precompile_headers(PipsiHSR PRIVATE "${SRC_DIR}/pch.h")
 endif()
 
-if(WIN32)
-    target_link_libraries(PipsiHSR PRIVATE
-        d3d11
-        dxgi
-        dxguid
-        "${DETOURS_LIB}"
-    )
-endif()
-
-if(MINGW)
-    target_link_options(PipsiHSR PRIVATE
-        -static
-        -static-libgcc
-        -static-libstdc++
-    )
-endif()
+target_link_libraries(PipsiHSR PRIVATE
+    d3d11
+    dxgi
+    dxguid
+    "${DETOURS_LIB}"
+)
 
 set_target_properties(PipsiHSR PROPERTIES
-    OUTPUT_NAME "PipsiHSR"
+    OUTPUT_NAME "cheat.dll"
 )

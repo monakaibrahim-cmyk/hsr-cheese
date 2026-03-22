@@ -1,7 +1,5 @@
 #include "pch.h"
-
 #include "imgui_user.h"
-
 #include "imgui_internal.h"
 
 namespace ImGui
