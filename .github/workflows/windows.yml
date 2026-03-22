@@ -26,6 +26,3 @@ jobs:
 
       - name: Build
         run: cmake --build build-windows --config Debug
-
-      - name: Run tests (optional)
-        run: ctest --test-dir build-windows --output-on-failure

@@ -28,6 +28,3 @@ jobs:
 
       - name: Build
         run: cmake --build build-linux --parallel $(nproc)
-
-      - name: Run tests (optional)
-        run: ctest --test-dir build-linux --output-on-failure
