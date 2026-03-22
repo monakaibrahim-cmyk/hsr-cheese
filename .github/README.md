@@ -5,8 +5,8 @@
 ### 🚀 Project Status
 | Platform | Status |
 | :--- | :--- |
-| `Windows` | ![Windows Build](https://github.com/monakaibrahim-cmyk/hsr-cheese/actions/workflows/build-windows.yml/badge.svg?branch=development) |
-| `Linux` | ![Linux Build](https://github.com/monakaibrahim-cmyk/hsr-cheese/actions/workflows/build-linux.yml/badge.svg?branch=development) |
+| `Windows` | ![Windows Build](https://github.com/monakaibrahim-cmyk/hsr-cheese/actions/workflows/windows.yml/badge.svg?branch=development) |
+| `Linux` | ![Linux Build](https://github.com/monakaibrahim-cmyk/hsr-cheese/actions/workflows/linux.yml/badge.svg?branch=development) |
 
 ## ⚙️ Build Instructions
 * **CMake:** Version 3.20 or higher.

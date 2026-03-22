@@ -10,23 +10,15 @@ jobs:
   build:
     name: Build on Windows
     runs-on: windows-latest
-    defaults:
-      run:
-        working-directory: ${{ github.workspace }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
-
-      - name: Setup CMake
-        uses: lukka/get-cmake@v3
-        with:
-          cmake-version: '3.27.0'
+        uses: microsoft/setup-msbuild@v2
 
       - name: Configure CMake
         run: cmake -S . -B build-windows -G "Visual Studio 17 2022" -A x64
