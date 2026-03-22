@@ -26,7 +26,7 @@
 
 1. **Clone the Repository** (including submodules):
 	```bash
-	git clone --recursive https://github.com/monakaibrahim-cmyk/hsr-cheese.git
+	git clone --recursive --branch development https://github.com/monakaibrahim-cmyk/hsr-cheese.git
 	cd hsr-cheese
 	```
 
