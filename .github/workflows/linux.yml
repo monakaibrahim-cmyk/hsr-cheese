@@ -23,6 +23,11 @@ jobs:
           sudo apt update
           sudo apt install -y build-essential cmake mingw-w64
 
+      - name: Fix MSVC-specific syntax for MinGW
+        run: |
+          find include/ -name "*.h" -exec sed -i 's/UnityEngine::Vector2/Vector2/g' {} +
+          find include/ -name "*.h" -exec sed -i 's/UnityEngine::Vector3/Vector3/g' {} +
+
       - name: Configure CMake
         run: cmake -S . -B build-linux -DCMAKE_TOOLCHAIN_FILE=mingw64.toolchain.cmake -DCMAKE_BUILD_TYPE=Debug
 

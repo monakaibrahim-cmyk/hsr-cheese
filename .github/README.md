@@ -1,6 +1,6 @@
 ﻿# 🧀 hsr-cheese
 
-** Best Cheese and Goon Material.
+**Best Cheese and Goon Material.
 
 ### 🚀 Project Status
 | Platform | Status |
