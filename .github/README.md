@@ -1,6 +1,6 @@
 ﻿# 🧀 hsr-cheese
 
-**Best Cheese and Goon Material.
+**Best Cheese and Goon Material.**
 
 ### 🚀 Project Status
 | Platform | Status |
@@ -31,7 +31,7 @@
 	cmake --build build --config Debug
 	```
 
-The resulting library (`PipsiHSR.dll`) will be located in the `build/Debug` directory.
+The resulting library (`cheat.dll`) will be located in the `build/Debug` directory.
 
 ## 💎 Credits
 [@Z4ee](https://github.com/Z4ee) - for the goon materials.
