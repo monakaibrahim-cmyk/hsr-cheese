@@ -58,5 +58,5 @@ target_link_libraries(PipsiHSR PRIVATE
 )
 
 set_target_properties(PipsiHSR PROPERTIES
-    OUTPUT_NAME "cheat.dll"
+    OUTPUT_NAME "cheat"
 )
