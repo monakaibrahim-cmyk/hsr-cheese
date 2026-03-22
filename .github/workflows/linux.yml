@@ -1,0 +1,35 @@
+name: Linux Build
+
+on:
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ development ]
+
+jobs:
+  build:
+    name: Build on Linux
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential cmake libx11-dev libgl1-mesa-dev mingw-w64
+
+      - name: Configure CMake
+        run: cmake -S . -B build-windows-linux -DCMAKE_TOOLCHAIN_FILE=mingw64.toolchain.cmake -DCMAKE_BUILD_TYPE=Debug
+
+      - name: Build
+        run: cmake --build build-linux -- -j$(nproc)
+
+      - name: Run tests (optional)
+        run: ctest --test-dir build-linux --output-on-failure

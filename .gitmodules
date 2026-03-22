@@ -1,0 +1,4 @@
+[submodule "include/global"]
+	path = include/global
+	url = https://github.com/Z4ee/animesdk
+	branch = honkai-star-rail
