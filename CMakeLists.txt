@@ -3,11 +3,10 @@ project(PipsiHSR LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS OFF)
 
 set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")
 set(GLOBAL_DIR "${CMAKE_SOURCE_DIR}/include/global")
-set(DETOURS_LIB "${CMAKE_SOURCE_DIR}/libs/detours.lib")
 
 if(NOT EXISTS "${GLOBAL_DIR}/.git")
     message(STATUS "Cloning AnimeSDK submodule into include/global...")
@@ -29,11 +28,14 @@ endif()
 
 add_library(PipsiHSR SHARED ${SRC_FILES})
 
+find_path(DETOURS_INCLUDE_DIRS "detours/detours.h")
+
 target_include_directories(PipsiHSR PRIVATE
-    "${SRC_DIR}"
-    "${CMAKE_SOURCE_DIR}/include"
-    "${GLOBAL_DIR}"
-    "${SRC_DIR}/Common"
+    ${SRC_DIR}
+    ${CMAKE_SOURCE_DIR}/include
+    ${GLOBAL_DIR}
+    ${SRC_DIR}/Common
+    ${DETOURS_INCLUDE_DIRS}
 )
 
 target_compile_definitions(PipsiHSR PRIVATE
@@ -50,13 +52,28 @@ if(EXISTS "${SRC_DIR}/pch.h")
     target_precompile_headers(PipsiHSR PRIVATE "${SRC_DIR}/pch.h")
 endif()
 
+find_library(DETOURS_LIBRARY detours REQUIRED)
+
 target_link_libraries(PipsiHSR PRIVATE
     d3d11
     dxgi
     dxguid
-    "${DETOURS_LIB}"
+    ${DETOURS_LIBRARY}
 )
 
 set_target_properties(PipsiHSR PROPERTIES
-    OUTPUT_NAME "cheat"
+    INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE
+    OUTPUT_NAME "Cheat"
+)
+
+target_compile_options(PipsiHSR PRIVATE 
+    $<$<CONFIG:Release>:/O2 /Oi /Gy /Gw>
+)
+
+target_link_options(PipsiHSR PRIVATE 
+    $<$<CONFIG:Release>:/OPT:REF /OPT:ICF>
+)
+
+set_target_properties(PipsiHSR PROPERTIES
+    MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
 )

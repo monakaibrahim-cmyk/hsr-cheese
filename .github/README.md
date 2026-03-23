@@ -15,6 +15,7 @@
 * **CMake:** Version 3.20 or higher.
 * **Compiler:** C++20 compatible (MSVC 2022).
 * **Git:** Required for submodule management.
+* **vcpkg** Required for detours.
 * **Dependencies:** DirectX SDK (D3D11/DXGI)
 
 > [!IMPORTANT]
@@ -30,17 +31,10 @@
 	cd hsr-cheese
 	```
 
-2. Configure the Project:
-	```bash
-	cmake -B build -S . -DCMAKE_BUILD_TYPE=Debug
-	```	
+2. Build the Project:
+	run `build.bat`
 
-3. Build the Project:
-	```bash
-	cmake --build build --config Debug
-	```
-
-The resulting library (`cheat.dll`) will be located in the `build/Debug` directory.
+The resulting library (`Cheat.dll`) will be located in the `build/Debug` directory.
 
 ---
 

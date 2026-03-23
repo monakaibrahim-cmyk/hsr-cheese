@@ -18,17 +18,10 @@ Open the **Visual Studio Installer**, click **Modify**, and ensure the following
 
 ---
 
-## Optional: Detours Support
-If you plan on building or compiling your own version of [Microsoft Detours](https://github.com/microsoft/detours), you will need the following component for key generation:
-
-![Detours Support](img/2.png)
-
----
-
-## 3. Individual Components (Optional)
+## 2. Individual Components (Optional)
 For specific SDK requirements (such as Windows 10 or 11 SDKs), switch to the **Individual components** tab and verify the following are selected:
 
-![3](img/3.png)
+![2](img/2.png)
 
 ---
 
