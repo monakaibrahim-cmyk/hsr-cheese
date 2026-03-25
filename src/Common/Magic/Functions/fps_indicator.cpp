@@ -18,12 +18,15 @@ namespace FpsIndicator
 
 	void OnFrame()
 	{
-		if (ImGui::Begin("FPS Indicator", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoBringToFrontOnFocus))
+		if (Options.FpsIndicator)
 		{
-			ImGui::Text("FPS: %.0f", ImGui::GetIO().Framerate);
-		}
+			if (ImGui::Begin("FPS Indicator", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoBringToFrontOnFocus))
+			{
+				ImGui::Text("FPS: %.0f", ImGui::GetIO().Framerate);
+			}
 
-		ImGui::End();
+			ImGui::End();
+		}
 	}
 
 	bool Setup()

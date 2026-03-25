@@ -20,7 +20,8 @@
 #include "Functions/config.h"
 #include "Functions/fps_unlocker.h"
 #include "Functions/global_speed_changer.h"
-#include "Menu/menu_settings.h"
+#include "Functions/menu_settings.h"
+#include "Functions/console_window.h"
 
 namespace Cheat
 {
@@ -56,6 +57,7 @@ namespace Cheat
 				FpsUnlocker::Setup();
 				GlobalSpeedChanger::Setup();
 				MenuSettings::Setup();
+				Console::Setup();
 			}
 		}
 
@@ -89,6 +91,7 @@ namespace Cheat
 		FpsUnlocker::Menu();
 		GlobalSpeedChanger::Menu();
 		MenuSettings::Menu();
+		Console::Menu();
 	}
 
 	void BeforeFrame()

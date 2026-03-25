@@ -34,7 +34,7 @@
 2. Build the Project:
 	run `build.bat`
 
-The resulting library (`Cheat.dll`) will be located in the `build/Debug` directory.
+The resulting library (`Cheat.dll`) will be located in the `build/Release` directory.
 
 ---
 

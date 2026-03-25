@@ -57,6 +57,7 @@ struct OPTIONS
 	unsigned char BattleSpeedChangerKey = 0;
 	bool BattleSpeedChangerKeyHeld = FALSE;
 	float BattleSpeedChangerValue = 5.0f;
+	bool ConsoleEnable = FALSE;
 };
 
 extern OPTIONS Options;

@@ -1,7 +1,22 @@
 @echo off
+
+chcp 65001 >nul
+
 setlocal enabledelayedexpansion
 
-echo [*] Hunting for vcpkg...
+for /f %%a in ('echo prompt $E^|cmd') do set "ESC=%%a"
+
+echo [%ESC%[33m*%ESC%[0m] Hunting for vcpkg...
+
+set "spinner=⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
+for /L %%i in (1,1,40) do (
+    set /a "idx=%%i %% 10"
+    for %%n in (!idx!) do set "char=!spinner:~%%n,1!"
+    <nul set /p "=!ESC![1G!ESC![K !char! Searching..."
+    ping 127.0.0.1 -n 1 -w 50 >nul
+)
+
+<nul set /p "=!ESC![1G!ESC![K"
 
 set "VCPKG_ROOT_PATH="
 set "IS_TEMP=0"
@@ -31,13 +46,13 @@ for %%D in (C D E F G) do (
     )
 )
 
-echo [!] vcpkg not found. Installing temporary instance...
+echo [%ESC%[31m✕%ESC%[0m]  vcpkg not found. Installing temporary instance...
 set "VCPKG_ROOT_PATH=%CD%\vcpkg_temp"
 set "IS_TEMP=1"
 
 if not exist "!VCPKG_ROOT_PATH!" (
     git clone --depth 1 https://github.com/microsoft/vcpkg.git "!VCPKG_ROOT_PATH!"
-    if !errorlevel! neq 0 (echo [!] Git clone failed. & pause & exit /b 1)
+    if !errorlevel! neq 0 (echo [%ESC%[31m✕%ESC%[0m] Git clone failed. & pause & exit /b 1)
 )
 
 if not exist "!VCPKG_ROOT_PATH!\vcpkg.exe" (
@@ -48,7 +63,7 @@ if not exist "!VCPKG_ROOT_PATH!\vcpkg.exe" (
 
 :FOUND
 set "VCPKG_TOOLCHAIN=!VCPKG_ROOT_PATH!\scripts\buildsystems\vcpkg.cmake"
-echo [+] vcpkg verified: !VCPKG_ROOT_PATH!
+echo [%ESC%[32m✓%ESC%[0m] vcpkg verified: !VCPKG_ROOT_PATH!
 
 set "BUILD_DIR=build"
 set "CONFIG=Release"
@@ -59,20 +74,20 @@ cmake -B %BUILD_DIR% -S . ^
     -DCMAKE_TOOLCHAIN_FILE="!VCPKG_TOOLCHAIN!" ^
     -DCMAKE_BUILD_TYPE=%CONFIG%
 
-if %errorlevel% neq 0 (echo [!] Config failed. & pause & exit /b %errorlevel%)
+if %errorlevel% neq 0 (echo [%ESC%[31m✕%ESC%[0m] Config failed. & pause & exit /b %errorlevel%)
 
 cmake --build %BUILD_DIR% --config %CONFIG%
 
-if %errorlevel% neq 0 (echo [!] Build failed. & pause & exit /b %errorlevel%)
+if %errorlevel% neq 0 (echo [%ESC%[31m✕%ESC%[0m] Build failed. & pause & exit /b %errorlevel%)
 
 echo.
-echo [+] Build Successful!
+echo [%ESC%[32m✓%ESC%[0m] Build Successful!
 if "!IS_TEMP!"=="1" (
-    echo [*] Cleaning up temporary vcpkg installation...
+    echo 🗑 Cleaning up temporary vcpkg installation...
     timeout /t 2 /nobreak >nul
     rd /s /q "!VCPKG_ROOT_PATH!"
-    echo [+] vcpkg_temp removed.
+    echo [%ESC%[32m✓%ESC%[0m] vcpkg_temp removed.
 )
 
-echo [+] DLL: %BUILD_DIR%\%CONFIG%\Cheat.dll
+echo DLL: %BUILD_DIR%\%CONFIG%\Cheat.dll
 pause
